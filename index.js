@@ -1,59 +1,48 @@
 const input = require("readline-sync");
-
 let matriz = [];
-
 for (let i = 0; i < 3; i++) {
     matriz[i] = [];
     for (let j = 0; j < 3; j++) {
-        matriz[i][j] = Number(input.question(`Digite o valor [${i}][${j}]: `));
+        matriz[i][j] = Number(input.question("Digite um valor: "));
     }
 }
-
-console.log("\nMatriz digitada:");
+console.log("\nMatriz que voce digitou:");
 for (let i = 0; i < 3; i++) {
     console.log(matriz[i]);
 }
-
 let opcao;
-
 do {
-    console.log("\nEscolha uma opcao:");
-    console.log("1 - Soma da linha 1");
-    console.log("2 - Multiplicacao da diagonal");
-    console.log("3 - Quantidade de numeros pares");
+    console.log("\nMenu:");
+    console.log("1 - Soma da primeira linha");
+    console.log("2 - Multiplicar diagonal");
+    console.log("3 - Contar numeros pares");
     console.log("4 - Sair");
-
-    opcao = Number(input.question("Opcao: "));
-
+    opcao = Number(input.question("Escolha uma opcao: "));
     if (opcao === 1) {
         let soma = 0;
-        for (let j = 0; j < 3; j++) {
-            soma += matriz[0][j]; // linha 1 (índice 0)
+                for (let j = 0; j < 3; j++) {
+            soma = soma + matriz[0][j];
         }
-        console.log("Soma da linha 1:", soma);
-
+        console.log("Resultado da soma: " + soma);
     } else if (opcao === 2) {
         let mult = 1;
         for (let i = 0; i < 3; i++) {
-            mult *= matriz[i][i]; // diagonal principal
+            mult = mult * matriz[i][i];
         }
-        console.log("Multiplicacao da diagonal:", mult);
-
+        console.log("Resultado da multiplicacao: " + mult);
     } else if (opcao === 3) {
-        let pares = 0;
-        for (let i = 0; i < 3; i++) {
+        let cont = 0;
+               for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
-                if (matriz[i][j] % 2 === 0) {
-                    pares++;
+                if (matriz[i][j] % 2 == 0) {
+                    cont = cont + 1;
                 }
             }
         }
-        console.log("Quantidade de pares:", pares);
-
+        console.log("Quantidade de pares: " + cont);
     } else if (opcao === 4) {
-        console.log("Programa encerrado.");
+        console.log("Encerrando...");
     } else {
-        console.log("Opcao invalida!");
+        console.log("Opcao errada, tenta de novo");
     }
-
-} while (opcao !== 4);
+} while (opcao != 4);
